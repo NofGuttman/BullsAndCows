@@ -9,4 +9,4 @@ function renderCode(){
     return code;
 }
 
-console.log(renderCode());
+module.exports = renderCode;

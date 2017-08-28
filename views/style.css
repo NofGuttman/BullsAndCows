@@ -1,0 +1,8 @@
+body {
+    font-family: sans-serif;
+}
+
+.guess-box {
+    width: 50;
+    height: 50;
+}
