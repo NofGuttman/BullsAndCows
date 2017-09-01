@@ -9,3 +9,13 @@ $("#send-guess").click(function(){
     }
   });
 });
+
+$("#restart-game").click(function(){
+    $.ajax({
+        type: "POST",
+        url: "/restart",
+        success: function(response){
+            console.log(response);
+        }
+    })
+})

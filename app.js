@@ -28,6 +28,13 @@ app.post('/guess', function(req, res){
     }
 });
 
+app.post('/restart', function(req, res){
+    guesses = [];
+    code = renderCode();
+    console.log(code);
+    res.send("Restarted game");
+});
+
 app.listen(3000, function(){
     console.log("App is now running in port 3000");
 });
