@@ -24,7 +24,7 @@ app.post('/guess', function(req, res){
         guesses.push([guess, (score(guess, code))]);
         res.send(guesses);
     } else {
-        res.send("Not a valid guess")
+        res.send("false");
     }
 });
 
