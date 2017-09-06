@@ -1,9 +1,10 @@
 let express = require('express');
-let bodyParser = require('body-parser')
+let bodyParser = require('body-parser');
 let app = express();
 let renderCode = require('./app/renderCode');
 let isValidGuess = require('./app/isValidGuess');
 let score = require('./app/score');
+let path = require('path');
 
 let code = renderCode();
 
@@ -11,11 +12,11 @@ let guesses = [];
 
 console.log("Code is:", code);
 
-app.use(express.static('views'));
+app.use(express.static('src'));
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/', function(req, res){
-   res.sendFile("./index.html"); 
+   res.sendFile(path.resolve(__dirname, "src/index2.html")); 
 });
 
 app.post('/guess', function(req, res){
