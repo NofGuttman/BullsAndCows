@@ -22401,6 +22401,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = __webpack_require__(24);
 
 var _react2 = _interopRequireDefault(_react);
@@ -22411,18 +22413,47 @@ var _DigitSelect2 = _interopRequireDefault(_DigitSelect);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var App = function App() {
-  return _react2.default.createElement(
-    'div',
-    null,
-    _react2.default.createElement(
-      'h1',
-      null,
-      'Test dude!'
-    ),
-    _react2.default.createElement(_DigitSelect2.default, null)
-  );
-};
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var App = function (_React$Component) {
+  _inherits(App, _React$Component);
+
+  function App(props) {
+    _classCallCheck(this, App);
+
+    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+
+    _this.state = {
+      nextGuess: [0, 0, 0, 0]
+    };
+    return _this;
+  }
+
+  _createClass(App, [{
+    key: 'chooseNumber',
+    value: function chooseNumber(place, number) {
+      this.state.nextGuess[place] = number;
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(_DigitSelect2.default, { digitNumber: 0 }),
+        _react2.default.createElement(_DigitSelect2.default, { digitNumber: 1 }),
+        _react2.default.createElement(_DigitSelect2.default, { digitNumber: 2 }),
+        _react2.default.createElement(_DigitSelect2.default, { digitNumber: 3 })
+      );
+    }
+  }]);
+
+  return App;
+}(_react2.default.Component);
 
 exports.default = App;
 
@@ -22447,21 +22478,23 @@ var _Digit2 = _interopRequireDefault(_Digit);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var DigitSelect = function DigitSelect() {
+var DigitSelect = function DigitSelect(_ref) {
+  var digitNumber = _ref.digitNumber;
+
   return _react2.default.createElement(
     'div',
-    null,
+    { className: 'select' },
     _react2.default.createElement(
       'h1',
       null,
-      'Dude'
+      'Select:'
     ),
-    _react2.default.createElement(_Digit2.default, { value: 0, style: "red digit" }),
-    _react2.default.createElement(_Digit2.default, { value: 1, style: "yellow digit" }),
-    _react2.default.createElement(_Digit2.default, { value: 2, style: "green digit" }),
-    _react2.default.createElement(_Digit2.default, { value: 3, style: "blue digit" }),
-    _react2.default.createElement(_Digit2.default, { value: 4, style: "purple digit" }),
-    _react2.default.createElement(_Digit2.default, { value: 5, style: "orange digit" })
+    _react2.default.createElement(_Digit2.default, { digitNumber: digitNumber, value: 0, style: 'red digit' }),
+    _react2.default.createElement(_Digit2.default, { digitNumber: digitNumber, value: 1, style: 'yellow digit' }),
+    _react2.default.createElement(_Digit2.default, { digitNumber: digitNumber, value: 2, style: 'green digit' }),
+    _react2.default.createElement(_Digit2.default, { digitNumber: digitNumber, value: 3, style: 'blue digit' }),
+    _react2.default.createElement(_Digit2.default, { digitNumber: digitNumber, value: 4, style: 'purple digit' }),
+    _react2.default.createElement(_Digit2.default, { digitNumber: digitNumber, value: 5, style: 'orange digit' })
   );
 };
 
@@ -22486,9 +22519,16 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var Digit = function Digit(_ref) {
   var value = _ref.value,
-      style = _ref.style;
+      style = _ref.style,
+      digitNumber = _ref.digitNumber;
 
-  return _react2.default.createElement('div', { className: style });
+  return _react2.default.createElement(
+    'div',
+    {
+      className: style,
+      value: value },
+    digitNumber
+  );
 };
 
 exports.default = Digit;
