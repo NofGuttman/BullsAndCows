@@ -22,7 +22,9 @@ app.get('/', function(req, res){
 app.post('/guess', function(req, res){
     let guess = req.body.guess;
     if(isValidGuess(guess)){
-        guesses.push([guess, (score(guess, code))]);
+        guesses.push({
+          guess: guess,
+          score: (score(guess, code))});
         res.send(guesses);
     } else {
         res.send("false");

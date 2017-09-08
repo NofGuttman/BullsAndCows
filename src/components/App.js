@@ -1,12 +1,15 @@
 import React from 'react';
 import DigitSelect from './DigitSelect';
 import NextGuess from './NextGuess';
+import ScoreArea from './ScoreArea';
 
 class App extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      nextGuess: [0, 1, 2, 3]
+      nextGuess: [0, 1, 2, 3],
+      score: [{guess: [1,2,3,4], score: {bulls: 2, cows: 2}},
+             {guess: [5,0,1,2], score: {bulls: 0, cows: 1}}]
     }
     this.chooseNumber = this.chooseNumber.bind(this);
   }
@@ -25,7 +28,10 @@ class App extends React.Component {
         <DigitSelect digitNumber={1} clickHandler={this.chooseNumber} />
         <DigitSelect digitNumber={2} clickHandler={this.chooseNumber} />
         <DigitSelect digitNumber={3} clickHandler={this.chooseNumber} />
+        <div className="clear"></div>
         <NextGuess code={this.state.nextGuess} />
+        <div className="clear"></div>
+        <ScoreArea listOfScores={this.state.score} />
       </div>
     );
   }

@@ -8,8 +8,8 @@ const NextGuess = ({code}) => {
   });
   
   return(
-    <div>
-      <h1>{visualCode}</h1>
+    <div id="next-guess">
+      {visualCode}
     </div>
   );
 }
