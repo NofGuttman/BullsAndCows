@@ -22432,7 +22432,7 @@ var App = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
     _this.state = {
-      nextGuess: [0, 0, 0, 0]
+      nextGuess: [0, 1, 2, 3]
     };
     _this.chooseNumber = _this.chooseNumber.bind(_this);
     return _this;
@@ -22443,7 +22443,6 @@ var App = function (_React$Component) {
     value: function chooseNumber(ball) {
       var digit = +ball.target.name;
       var value = +ball.target.value;
-      console.log(digit, value);
       var updateNextGuess = this.state.nextGuess;
       updateNextGuess[digit] = value;
       this.setState({ nextGuess: updateNextGuess });
@@ -22497,12 +22496,17 @@ var DigitSelect = function DigitSelect(_ref) {
   return _react2.default.createElement(
     'div',
     { className: 'select' },
-    _react2.default.createElement(_Digit2.default, { digitNumber: digitNumber, clickHandler: clickHandler, value: 0, style: 'red digit' }),
-    _react2.default.createElement(_Digit2.default, { digitNumber: digitNumber, clickHandler: clickHandler, value: 1, style: 'yellow digit' }),
-    _react2.default.createElement(_Digit2.default, { digitNumber: digitNumber, clickHandler: clickHandler, value: 2, style: 'green digit' }),
-    _react2.default.createElement(_Digit2.default, { digitNumber: digitNumber, clickHandler: clickHandler, value: 3, style: 'blue digit' }),
-    _react2.default.createElement(_Digit2.default, { digitNumber: digitNumber, clickHandler: clickHandler, value: 4, style: 'purple digit' }),
-    _react2.default.createElement(_Digit2.default, { digitNumber: digitNumber, clickHandler: clickHandler, value: 5, style: 'orange digit' })
+    _react2.default.createElement(
+      'h1',
+      null,
+      digitNumber + 1
+    ),
+    _react2.default.createElement(_Digit2.default, { digitNumber: digitNumber, clickHandler: clickHandler, value: 0 }),
+    _react2.default.createElement(_Digit2.default, { digitNumber: digitNumber, clickHandler: clickHandler, value: 1 }),
+    _react2.default.createElement(_Digit2.default, { digitNumber: digitNumber, clickHandler: clickHandler, value: 2 }),
+    _react2.default.createElement(_Digit2.default, { digitNumber: digitNumber, clickHandler: clickHandler, value: 3 }),
+    _react2.default.createElement(_Digit2.default, { digitNumber: digitNumber, clickHandler: clickHandler, value: 4 }),
+    _react2.default.createElement(_Digit2.default, { digitNumber: digitNumber, clickHandler: clickHandler, value: 5 })
   );
 };
 
@@ -22523,17 +22527,20 @@ var _react = __webpack_require__(24);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _colorList = __webpack_require__(188);
+
+var _colorList2 = _interopRequireDefault(_colorList);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Digit = function Digit(_ref) {
   var value = _ref.value,
-      style = _ref.style,
       digitNumber = _ref.digitNumber,
       clickHandler = _ref.clickHandler;
 
   return _react2.default.createElement('button', {
     onClick: clickHandler,
-    className: style,
+    className: _colorList2.default[value],
     value: value,
     name: digitNumber });
 };
@@ -22555,19 +22562,44 @@ var _react = __webpack_require__(24);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _Digit = __webpack_require__(186);
+
+var _Digit2 = _interopRequireDefault(_Digit);
+
+var _colorList = __webpack_require__(188);
+
+var _colorList2 = _interopRequireDefault(_colorList);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var NextGuess = function NextGuess(_ref) {
   var code = _ref.code;
 
+  var visualCode = code.map(function (digit) {
+    return _react2.default.createElement(_Digit2.default, { value: digit });
+  });
+
   return _react2.default.createElement(
-    'h1',
+    'div',
     null,
-    code
+    _react2.default.createElement(
+      'h1',
+      null,
+      visualCode
+    )
   );
 };
 
 exports.default = NextGuess;
+
+/***/ }),
+/* 188 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = ["red digit", "yellow digit", "green digit", "blue digit", "purple digit", "orange digit"];
 
 /***/ })
 /******/ ]);

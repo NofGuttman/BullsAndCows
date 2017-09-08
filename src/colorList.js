@@ -1,0 +1,1 @@
+module.exports = ["red digit", "yellow digit", "green digit", "blue digit", "purple digit", "orange digit"];

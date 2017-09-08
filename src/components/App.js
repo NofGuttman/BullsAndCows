@@ -6,14 +6,13 @@ class App extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      nextGuess: [0, 0, 0, 0]
+      nextGuess: [0, 1, 2, 3]
     }
     this.chooseNumber = this.chooseNumber.bind(this);
   }
   chooseNumber(ball) {
     let digit = +ball.target.name;
     let value = +ball.target.value;
-    console.log(digit, value);
     let updateNextGuess = this.state.nextGuess
     updateNextGuess[digit] = value;
     this.setState({nextGuess: updateNextGuess});
