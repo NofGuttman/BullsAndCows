@@ -1,5 +1,6 @@
 import React from 'react';
 import DigitSelect from './DigitSelect';
+import NextGuess from './NextGuess';
 
 class App extends React.Component {
   constructor(props){
@@ -7,17 +8,25 @@ class App extends React.Component {
     this.state = {
       nextGuess: [0, 0, 0, 0]
     }
+    this.chooseNumber = this.chooseNumber.bind(this);
   }
-  chooseNumber(place, number) {
-    this.state.nextGuess[place] = number;
+  chooseNumber(ball) {
+    let digit = +ball.target.name;
+    let value = +ball.target.value;
+    console.log(digit, value);
+    let updateNextGuess = this.state.nextGuess
+    updateNextGuess[digit] = value;
+    this.setState({nextGuess: updateNextGuess});
+    console.log(this.state.nextGuess)
   }
   render() {
     return(
       <div>
-        <DigitSelect digitNumber={0} />
-        <DigitSelect digitNumber={1} />
-        <DigitSelect digitNumber={2} />
-        <DigitSelect digitNumber={3} />
+        <DigitSelect digitNumber={0} clickHandler={this.chooseNumber} />
+        <DigitSelect digitNumber={1} clickHandler={this.chooseNumber} />
+        <DigitSelect digitNumber={2} clickHandler={this.chooseNumber} />
+        <DigitSelect digitNumber={3} clickHandler={this.chooseNumber} />
+        <NextGuess code={this.state.nextGuess} />
       </div>
     );
   }

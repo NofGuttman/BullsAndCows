@@ -22411,6 +22411,10 @@ var _DigitSelect = __webpack_require__(185);
 
 var _DigitSelect2 = _interopRequireDefault(_DigitSelect);
 
+var _NextGuess = __webpack_require__(187);
+
+var _NextGuess2 = _interopRequireDefault(_NextGuess);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -22430,13 +22434,20 @@ var App = function (_React$Component) {
     _this.state = {
       nextGuess: [0, 0, 0, 0]
     };
+    _this.chooseNumber = _this.chooseNumber.bind(_this);
     return _this;
   }
 
   _createClass(App, [{
     key: 'chooseNumber',
-    value: function chooseNumber(place, number) {
-      this.state.nextGuess[place] = number;
+    value: function chooseNumber(ball) {
+      var digit = +ball.target.name;
+      var value = +ball.target.value;
+      console.log(digit, value);
+      var updateNextGuess = this.state.nextGuess;
+      updateNextGuess[digit] = value;
+      this.setState({ nextGuess: updateNextGuess });
+      console.log(this.state.nextGuess);
     }
   }, {
     key: 'render',
@@ -22444,10 +22455,11 @@ var App = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         null,
-        _react2.default.createElement(_DigitSelect2.default, { digitNumber: 0 }),
-        _react2.default.createElement(_DigitSelect2.default, { digitNumber: 1 }),
-        _react2.default.createElement(_DigitSelect2.default, { digitNumber: 2 }),
-        _react2.default.createElement(_DigitSelect2.default, { digitNumber: 3 })
+        _react2.default.createElement(_DigitSelect2.default, { digitNumber: 0, clickHandler: this.chooseNumber }),
+        _react2.default.createElement(_DigitSelect2.default, { digitNumber: 1, clickHandler: this.chooseNumber }),
+        _react2.default.createElement(_DigitSelect2.default, { digitNumber: 2, clickHandler: this.chooseNumber }),
+        _react2.default.createElement(_DigitSelect2.default, { digitNumber: 3, clickHandler: this.chooseNumber }),
+        _react2.default.createElement(_NextGuess2.default, { code: this.state.nextGuess })
       );
     }
   }]);
@@ -22479,22 +22491,18 @@ var _Digit2 = _interopRequireDefault(_Digit);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var DigitSelect = function DigitSelect(_ref) {
-  var digitNumber = _ref.digitNumber;
+  var digitNumber = _ref.digitNumber,
+      clickHandler = _ref.clickHandler;
 
   return _react2.default.createElement(
     'div',
     { className: 'select' },
-    _react2.default.createElement(
-      'h1',
-      null,
-      'Select:'
-    ),
-    _react2.default.createElement(_Digit2.default, { digitNumber: digitNumber, value: 0, style: 'red digit' }),
-    _react2.default.createElement(_Digit2.default, { digitNumber: digitNumber, value: 1, style: 'yellow digit' }),
-    _react2.default.createElement(_Digit2.default, { digitNumber: digitNumber, value: 2, style: 'green digit' }),
-    _react2.default.createElement(_Digit2.default, { digitNumber: digitNumber, value: 3, style: 'blue digit' }),
-    _react2.default.createElement(_Digit2.default, { digitNumber: digitNumber, value: 4, style: 'purple digit' }),
-    _react2.default.createElement(_Digit2.default, { digitNumber: digitNumber, value: 5, style: 'orange digit' })
+    _react2.default.createElement(_Digit2.default, { digitNumber: digitNumber, clickHandler: clickHandler, value: 0, style: 'red digit' }),
+    _react2.default.createElement(_Digit2.default, { digitNumber: digitNumber, clickHandler: clickHandler, value: 1, style: 'yellow digit' }),
+    _react2.default.createElement(_Digit2.default, { digitNumber: digitNumber, clickHandler: clickHandler, value: 2, style: 'green digit' }),
+    _react2.default.createElement(_Digit2.default, { digitNumber: digitNumber, clickHandler: clickHandler, value: 3, style: 'blue digit' }),
+    _react2.default.createElement(_Digit2.default, { digitNumber: digitNumber, clickHandler: clickHandler, value: 4, style: 'purple digit' }),
+    _react2.default.createElement(_Digit2.default, { digitNumber: digitNumber, clickHandler: clickHandler, value: 5, style: 'orange digit' })
   );
 };
 
@@ -22520,18 +22528,46 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Digit = function Digit(_ref) {
   var value = _ref.value,
       style = _ref.style,
-      digitNumber = _ref.digitNumber;
+      digitNumber = _ref.digitNumber,
+      clickHandler = _ref.clickHandler;
 
-  return _react2.default.createElement(
-    'div',
-    {
-      className: style,
-      value: value },
-    digitNumber
-  );
+  return _react2.default.createElement('button', {
+    onClick: clickHandler,
+    className: style,
+    value: value,
+    name: digitNumber });
 };
 
 exports.default = Digit;
+
+/***/ }),
+/* 187 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(24);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var NextGuess = function NextGuess(_ref) {
+  var code = _ref.code;
+
+  return _react2.default.createElement(
+    'h1',
+    null,
+    code
+  );
+};
+
+exports.default = NextGuess;
 
 /***/ })
 /******/ ]);

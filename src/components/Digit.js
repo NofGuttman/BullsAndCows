@@ -1,11 +1,13 @@
 import React from 'react';
 
-const Digit = ({value, style, digitNumber}) => {
+const Digit = ({value, style, digitNumber, clickHandler}) => {
   return(
-    <div
+    <button
+      onClick={clickHandler}
       className={style}
-      value={value}>{digitNumber}
-    </div>
+      value={value}
+      name={digitNumber}>
+    </button>
   );
 }
 

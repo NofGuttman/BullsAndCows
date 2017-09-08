@@ -3,6 +3,7 @@ body {
 }
 
 .select {
+  width: 120px;
   float: left;
   margin: 10px;
 }
