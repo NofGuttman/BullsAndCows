@@ -32,7 +32,6 @@ class App extends React.Component {
       this.setState({
         score: response.data
       });
-      console.log(response.data);
     })
     .catch((err) => {
       console.log(err);
@@ -57,10 +56,9 @@ class App extends React.Component {
         <DigitSelect digitNumber={3} clickHandler={this.chooseNumber} />
         <div className="clear"></div>
         <NextGuess code={this.state.nextGuess} />
-        <Button clickHandler={this.sendGuess} text="Send Guess" />
-        <Button clickHandler={this.restartGame} text="Restart Game" />
         <div className="clear"></div>
-        <ScoreArea listOfScores={this.state.score} />
+        <Button style="game-button green-btn" clickHandler={this.sendGuess} text="Send Guess" />
+        <ScoreArea clickHandler={this.restartGame} listOfScores={this.state.score} />
       </div>
     );
   }

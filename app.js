@@ -6,6 +6,8 @@ let isValidGuess = require('./app/isValidGuess');
 let score = require('./app/score');
 let path = require('path');
 
+let port = process.env.PORT || 3000;
+
 let code = renderCode();
 
 let guesses = [];
@@ -39,6 +41,6 @@ app.post('/restart', function(req, res){
     res.send("Restarted game");
 });
 
-app.listen(3000, function(){
+app.listen(port, function(){
     console.log("App is now running in port 3000");
 });
