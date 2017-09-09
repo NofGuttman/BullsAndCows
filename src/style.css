@@ -8,8 +8,12 @@ body {
   border-radius: 10px;
   border: 2px solid black;
   float: left;
-  width: 170px;
+  width: 180px;
   height: auto;
+}
+
+#next-guess .digit {
+  margin-right: 11px;
 }
 
 #score-area {
@@ -26,11 +30,10 @@ body {
 .select {
   background-color: #dbdbdb;
   text-align: center;
-  width: 105px;
+  width: 40px;
   border: 2px solid black;
   border-radius: 10px;
   float: left;
-  margin: 10px;
 }
 
 .select h1 {
@@ -117,7 +120,7 @@ body {
 }
 
 #score-area {
+  float: left;
   width: 220px;
   height: auto;
-  float: left;
 }

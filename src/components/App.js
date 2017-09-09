@@ -1,17 +1,20 @@
 import React from 'react';
+import axios from 'axios';
 import DigitSelect from './DigitSelect';
 import NextGuess from './NextGuess';
 import ScoreArea from './ScoreArea';
+import Button from './Button';
 
 class App extends React.Component {
   constructor(props){
     super(props)
     this.state = {
       nextGuess: [0, 1, 2, 3],
-      score: [{guess: [1,2,3,4], score: {bulls: 2, cows: 2}},
-             {guess: [5,0,1,2], score: {bulls: 0, cows: 1}}]
+      score: []
     }
     this.chooseNumber = this.chooseNumber.bind(this);
+    this.sendGuess = this.sendGuess.bind(this);
+    this.restartGame = this.restartGame.bind(this);
   }
   chooseNumber(ball) {
     let digit = +ball.target.name;
@@ -20,6 +23,30 @@ class App extends React.Component {
     updateNextGuess[digit] = value;
     this.setState({nextGuess: updateNextGuess});
     console.log(this.state.nextGuess)
+  }
+  sendGuess(){
+    axios.post('/guess', {
+      guess: this.state.nextGuess
+    })
+    .then((response) => {
+      this.setState({
+        score: response.data
+      });
+      console.log(response.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
+  restartGame(){
+    axios({
+      method: 'post',
+      url: '/restart'
+    });
+    this.setState({
+      nextGuess: [0, 1, 2, 3],
+      score: []
+    })
   }
   render() {
     return(
@@ -30,6 +57,8 @@ class App extends React.Component {
         <DigitSelect digitNumber={3} clickHandler={this.chooseNumber} />
         <div className="clear"></div>
         <NextGuess code={this.state.nextGuess} />
+        <Button clickHandler={this.sendGuess} text="Send Guess" />
+        <Button clickHandler={this.restartGame} text="Restart Game" />
         <div className="clear"></div>
         <ScoreArea listOfScores={this.state.score} />
       </div>

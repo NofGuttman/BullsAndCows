@@ -13,6 +13,7 @@ let guesses = [];
 console.log("Code is:", code);
 
 app.use(express.static('src'));
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/', function(req, res){
