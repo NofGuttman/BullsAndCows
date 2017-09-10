@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node app",
     "test": "jest",
     "dev": "webpack-dev-server"
   },
