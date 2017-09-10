@@ -4,7 +4,7 @@ import colorList from '../colorList';
 
 const NextGuess = ({code}) => {
   const visualCode = code.map((digit) => {
-    return(<Digit value={digit} />);
+    return(<Digit key={Math.random()} value={digit} />);
   });
   
   return(

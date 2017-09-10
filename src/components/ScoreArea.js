@@ -4,7 +4,7 @@ import Button from './Button'
 
 const ScoreArea = ({listOfScores, clickHandler}) => {
   const scoreList = listOfScores.map((score) => {
-    return (<Score score={score} />);
+    return (<Score key={Math.random()} score={score} />);
   })
   
   return(

@@ -23215,9 +23215,9 @@ var App = function (_React$Component) {
       _axios2.default.post('/getScore', {}).then(function (response) {
         _this2.setState({
           score: response.data
-        }).catch(function (err) {
-          console.log(err);
         });
+      }).catch(function (err) {
+        console.log(err);
       });
     }
   }, {
@@ -24228,7 +24228,7 @@ var NextGuess = function NextGuess(_ref) {
   var code = _ref.code;
 
   var visualCode = code.map(function (digit) {
-    return _react2.default.createElement(_Digit2.default, { value: digit });
+    return _react2.default.createElement(_Digit2.default, { key: Math.random(), value: digit });
   });
 
   return _react2.default.createElement(
@@ -24270,7 +24270,7 @@ var ScoreArea = function ScoreArea(_ref) {
       clickHandler = _ref.clickHandler;
 
   var scoreList = listOfScores.map(function (score) {
-    return _react2.default.createElement(_Score2.default, { score: score });
+    return _react2.default.createElement(_Score2.default, { key: Math.random(), score: score });
   });
 
   return _react2.default.createElement(
@@ -24317,18 +24317,18 @@ var Score = function Score(_ref) {
 
 
   var visualCode = score.guess.map(function (digit) {
-    return _react2.default.createElement(_Digit2.default, { value: digit });
+    return _react2.default.createElement(_Digit2.default, { key: Math.random(), value: digit });
   });
 
   var bullsAndCows = [];
   for (var i = 0; i < score.score.bulls; i++) {
-    bullsAndCows.push(_react2.default.createElement('div', { className: 'bull-score' }));
+    bullsAndCows.push(_react2.default.createElement('div', { key: bullsAndCows.length, className: 'bull-score' }));
   }
   for (var _i = 0; _i < score.score.cows; _i++) {
-    bullsAndCows.push(_react2.default.createElement('div', { className: 'cow-score' }));
+    bullsAndCows.push(_react2.default.createElement('div', { key: bullsAndCows.length, className: 'cow-score' }));
   }
   while (bullsAndCows.length < 4) {
-    bullsAndCows.push(_react2.default.createElement('div', { className: 'no-score' }));
+    bullsAndCows.push(_react2.default.createElement('div', { key: bullsAndCows.length, className: 'no-score' }));
   }
 
   return _react2.default.createElement(

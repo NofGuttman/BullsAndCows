@@ -22,10 +22,10 @@ class App extends React.Component {
         this.setState({
           score: response.data
         })
+      })
       .catch((err) => {
           console.log(err)
-        });
-    });
+      });
   }
   chooseNumber(ball) {
     let digit = +ball.target.name;
