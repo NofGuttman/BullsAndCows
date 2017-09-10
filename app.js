@@ -34,6 +34,10 @@ app.post('/guess', function(req, res){
     }
 });
 
+app.post('/getScore', function(req, res){
+  res.send(guesses);
+});
+
 app.post('/restart', function(req, res){
     guesses = [];
     code = renderCode();

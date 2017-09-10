@@ -16,6 +16,17 @@ class App extends React.Component {
     this.sendGuess = this.sendGuess.bind(this);
     this.restartGame = this.restartGame.bind(this);
   }
+  componentWillMount() {
+    axios.post('/getScore', {})
+      .then((response) => {
+        this.setState({
+          score: response.data
+        })
+      .catch((err) => {
+          console.log(err)
+        });
+    });
+  }
   chooseNumber(ball) {
     let digit = +ball.target.name;
     let value = +ball.target.value;
